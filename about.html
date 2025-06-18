@@ -1,0 +1,517 @@
+<!DOCTYPE html>
+
+<html lang="en">
+<head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<meta content="AI_GEN: Dream Logic Engines - Where Imperfect Memory Becomes Cinematic Imagination. Explore neural storytelling and creative hallucination through AI video synthesis." name="description"/>
+<meta content="runway, ai video synthesis, dreamlike generation, creative hallucination, neural storytelling, gen 3, runwayml" name="keywords"/>
+<title>AI_GEN - Dream Logic Engines</title>
+<link crossorigin="anonymous" href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.2/dist/css/bootstrap.min.css" integrity="sha384-T3c6CoIi6uLrA9TneNEoa7RxnatzjcDSCmG1MXxSR1GAsXEV/Dwwykc2MPK8M2HN" rel="stylesheet"/>
+<link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/5.15.3/css/all.min.css" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Roboto:wght@300;400;700&amp;display=swap" rel="stylesheet"/>
+<style>
+    @font-face {
+        font-family: 'Synth Wave';
+        src: url('path-to-synth-wave-font.woff2') format('woff2');
+    }
+    @font-face {
+        font-family: 'Lucid Sans';
+        src: url('path-to-lucid-sans-font.woff2') format('woff2');
+    }
+    @font-face {
+        font-family: 'Glitch Script';
+        src: url('path-to-glitch-script-font.woff2') format('woff2');
+    }
+
+    :root {
+        --primary-indigo: #1A0B2E;
+        --primary-lavender: #9D8DF1;
+        --primary-teal: #4A7A8C;
+        --secondary-coral: #FF6B6B;
+        --secondary-mint: #A4F9C8;
+        --secondary-gold: #FFD700;
+        --accent-pink: #FF1493;
+        --accent-blue: #00FFFF;
+    }
+
+    body {
+        font-family: 'Lucid Sans', sans-serif;
+        background: linear-gradient(135deg, var(--primary-indigo), var(--primary-lavender));
+        color: #ffffff;
+    }
+
+    h1, h2, h3, h4, h5, h6 {
+        font-family: 'Synth Wave', sans-serif;
+    }
+
+    .accent-text {
+        font-family: 'Glitch Script', cursive;
+    }
+
+    .btn {
+        background: linear-gradient(45deg, var(--secondary-coral), var(--accent-pink));
+        border: none;
+        color: white;
+        padding: 10px 20px;
+        border-radius: 25px;
+        transition: all 0.3s ease;
+    }
+
+    .btn:hover {
+        transform: scale(1.05);
+        box-shadow: 0 0 15px var(--accent-blue);
+    }
+
+    .navbar {
+        background: rgba(26, 11, 46, 0.8);
+        backdrop-filter: blur(10px);
+    }
+
+    .navbar-brand {
+        font-family: 'Synth Wave', sans-serif;
+        color: var(--accent-blue);
+    }
+
+    .nav-link {
+        color: var(--secondary-mint) !important;
+        transition: color 0.3s ease;
+    }
+
+    .nav-link:hover {
+        color: var(--accent-pink) !important;
+    }
+
+    .card {
+        background: rgba(74, 122, 140, 0.2);
+        backdrop-filter: blur(5px);
+        border: 1px solid var(--primary-lavender);
+        border-radius: 15px;
+    }
+
+    .card-title {
+        color: var(--secondary-gold);
+    }
+
+    .form-control {
+        background: rgba(255, 255, 255, 0.1);
+        border: 1px solid var(--primary-lavender);
+        color: white;
+    }
+
+    .form-control:focus {
+        background: rgba(255, 255, 255, 0.2);
+        box-shadow: 0 0 10px var(--accent-blue);
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        // Parallax effect
+        window.addEventListener('scroll', () => {
+            const parallax = document.querySelectorAll('.parallax');
+            let scrollPosition = window.pageYOffset;
+
+            parallax.forEach(element => {
+                element.style.transform = `translateY(${scrollPosition * 0.5}px)`;
+            });
+        });
+
+        // Glitch effect on hover
+        const glitchElements = document.querySelectorAll('.glitch-hover');
+        glitchElements.forEach(element => {
+            element.addEventListener('mouseover', (e) => {
+                e.target.classList.add('glitch-effect');
+                setTimeout(() => {
+                    e.target.classList.remove('glitch-effect');
+                }, 1000);
+            });
+        });
+
+        // Smooth scroll
+        document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+            anchor.addEventListener('click', function (e) {
+                e.preventDefault();
+                document.querySelector(this.getAttribute('href')).scrollIntoView({
+                    behavior: 'smooth'
+                });
+            });
+        });
+    });
+</script>
+<div class="position-fixed top-0 start-0 w-100 h-100 d-flex justify-content-center align-items-center" id="cookie-popup" style="background-color: rgba(26, 11, 46, 0.9); z-index: 9999;">
+<div class="bg-white p-4 rounded-3 text-center" style="max-width: 400px;">
+<h3 class="mb-3" style="font-family: 'Synth Wave', sans-serif; color: #1A0B2E;">Dream Logic Cookies</h3>
+<p style="font-family: 'Lucid Sans', sans-serif; color: #4A7A8C;">We use cookies to enhance your surreal journey through our neural networks. Will you allow us to collect your digital essence?</p>
+<div class="mt-4">
+<button class="btn me-2" id="accept-cookies" style="background-color: #9D8DF1; color: #1A0B2E; font-family: 'Glitch Script', cursive;">Embrace the Dream</button>
+<button class="btn" id="reject-cookies" style="background-color: #FF6B6B; color: #1A0B2E; font-family: 'Glitch Script', cursive;">Stay Lucid</button>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', function() {
+    const cookiePopup = document.getElementById('cookie-popup');
+    const acceptBtn = document.getElementById('accept-cookies');
+    const rejectBtn = document.getElementById('reject-cookies');
+
+    function hideCookiePopup() {
+        cookiePopup.style.display = 'none !important';
+        cookiePopup.remove();
+    }
+
+    function setCookiePreference(preference) {
+        localStorage.setItem('cookiePreference', preference);
+        hideCookiePopup();
+    }
+
+    if (localStorage.getItem('cookiePreference') === null) {
+        cookiePopup.style.display = 'flex';
+    } else {
+        hideCookiePopup();
+    }
+
+    acceptBtn.addEventListener('click', function() {
+        setCookiePreference('accepted');
+    });
+
+    rejectBtn.addEventListener('click', function() {
+        setCookiePreference('rejected');
+    });
+
+    // Glitch effect on hover
+    [acceptBtn, rejectBtn].forEach(btn => {
+        btn.addEventListener('mouseover', function() {
+            this.style.transform = 'translate(' + (Math.random() * 5 - 2.5) + 'px, ' + (Math.random() * 5 - 2.5) + 'px)';
+            this.style.transition = 'transform 0.1s';
+        });
+        btn.addEventListener('mouseout', function() {
+            this.style.transform = 'none';
+        });
+    });
+});
+</script>
+<style>
+@font-face {
+    font-family: 'Synth Wave';
+    src: url('path-to-synthwave-font.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Lucid Sans';
+    src: url('path-to-lucidsans-font.woff2') format('woff2');
+}
+@font-face {
+    font-family: 'Glitch Script';
+    src: url('path-to-glitchscript-font.woff2') format('woff2');
+}
+
+#cookie-popup {
+    animation: fadeIn 0.5s ease-out;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; }
+    to { opacity: 1; }
+}
+
+#accept-cookies, #reject-cookies {
+    transition: all 0.3s ease;
+}
+
+#accept-cookies:hover, #reject-cookies:hover {
+    transform: scale(1.05);
+    box-shadow: 0 0 15px rgba(157, 141, 241, 0.5);
+}
+</style>
+</head>
+<body style="display: flex; flex-direction: column; min-height: 100vh;">
+<div style="flex: 1;">
+<header>
+<div class="container-fluid">
+<nav class="navbar navbar-expand-lg navbar-dark" style="background-color: #1A0B2E;">
+<div class="container">
+<a class="navbar-brand" href="/" style="font-family: 'Synth Wave', sans-serif; font-size: 2.5rem; color: #9D8DF1;">AI_GEN</a>
+<button aria-controls="navbarNav" aria-expanded="false" aria-label="Toggle navigation" class="navbar-toggler" data-bs-target="#navbarNav" data-bs-toggle="collapse" type="button">
+<span class="navbar-toggler-icon"></span>
+</button>
+<div class="collapse navbar-collapse justify-content-center" id="navbarNav">
+<ul class="navbar-nav">
+<li class="nav-item">
+<a class="nav-link" href="posts.html" style="font-family: 'Lucid Sans', sans-serif; font-size: 1.2rem; color: #A4F9C8;">Posts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="about.html" style="font-family: 'Lucid Sans', sans-serif; font-size: 1.2rem; color: #A4F9C8;">About</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="contacts.html" style="font-family: 'Lucid Sans', sans-serif; font-size: 1.2rem; color: #A4F9C8;">Contacts</a>
+</li>
+<li class="nav-item">
+<a class="nav-link" href="privacy_policy.html" style="font-family: 'Lucid Sans', sans-serif; font-size: 1.2rem; color: #A4F9C8;">Privacy Policy</a>
+</li>
+</ul>
+</div>
+</div>
+</nav>
+</div>
+<style>
+    @font-face {
+        font-family: 'Synth Wave';
+        src: url('path-to-synth-wave-font.woff2') format('woff2');
+    }
+
+    @font-face {
+        font-family: 'Lucid Sans';
+        src: url('path-to-lucid-sans-font.woff2') format('woff2');
+    }
+
+    .navbar-nav .nav-link {
+        position: relative;
+        overflow: hidden;
+    }
+
+    .navbar-nav .nav-link::before {
+        content: '';
+        position: absolute;
+        bottom: 0;
+        left: 0;
+        width: 100%;
+        height: 2px;
+        background-color: #FF1493;
+        transform: translateX(-100%);
+        transition: transform 0.3s ease;
+    }
+
+    .navbar-nav .nav-link:hover::before {
+        transform: translateX(0);
+    }
+
+    .navbar-brand {
+        transition: text-shadow 0.3s ease;
+    }
+
+    .navbar-brand:hover {
+        text-shadow: 0 0 10px #00FFFF, 0 0 20px #00FFFF, 0 0 30px #00FFFF;
+    }
+
+    @media (max-width: 991px) {
+        .navbar-collapse {
+            background-color: #1A0B2E;
+            padding: 15px;
+        }
+    }
+</style>
+<script>
+    document.addEventListener('DOMContentLoaded', (event) => {
+        const navLinks = document.querySelectorAll('.nav-link');
+        navLinks.forEach(link => {
+            link.addEventListener('mouseover', (e) => {
+                e.target.style.transform = 'scale(1.1)';
+                e.target.style.transition = 'transform 0.3s ease';
+            });
+            link.addEventListener('mouseout', (e) => {
+                e.target.style.transform = 'scale(1)';
+            });
+        });
+
+        const navbarToggler = document.querySelector('.navbar-toggler');
+        const navbarCollapse = document.querySelector('.navbar-collapse');
+
+        navbarToggler.addEventListener('click', () => {
+            navbarCollapse.classList.toggle('show');
+        });
+    });
+</script>
+</header>
+<div class="container-fluid py-5" style="background: linear-gradient(135deg, #1A0B2E, #4A7A8C);">
+<div class="row justify-content-center">
+<div class="col-lg-8 col-md-10">
+<h1 class="text-center mb-5" style="font-family: 'Synth Wave', sans-serif; font-size: 4rem; color: #A4F9C8; text-shadow: 2px 2px 4px #00FFFF;">About Dream Logic Engines</h1>
+<div class="card mb-5" style="background: rgba(157, 141, 241, 0.1); border: none; border-radius: 15px; box-shadow: 0 0 20px rgba(255, 20, 147, 0.3);">
+<div class="card-body p-4">
+<h2 style="font-family: 'Glitch Script', cursive; color: #FFD700; font-size: 2.5rem;">Our Vision</h2>
+<p style="font-family: 'Lucid Sans', sans-serif; color: #FFFFFF; font-size: 1.1rem;">
+                        At AI_GEN, we're pioneering the frontier of AI video synthesis, where imperfect memory transforms into cinematic imagination. Our Dream Logic Engines harness the power of creative hallucination and neural storytelling to generateduce dreamlike generations that challenge the boundaries of reality and fiction.
+                    </p>
+</div>
+</div>
+<div class="row mb-5">
+<div class="col-md-6 mb-4">
+<div class="card h-100" style="background: rgba(74, 122, 140, 0.2); border: none; border-radius: 15px; overflow: hidden;">
+<div class="card-body p-4">
+<h3 style="font-family: 'Synth Wave', sans-serif; color: #FF6B6B; font-size: 1.8rem;">The Runway to Imagination</h3>
+<p style="font-family: 'Lucid Sans', sans-serif; color: #FFFFFF; font-size: 1rem;">
+                                Inspired by RunwayML's groundbreaking Gen 3 technology, we've developed a unique apapproachach to AI-driven content creation. Our platform serves as a runway for your wildest ideas to take flight, transforming abstract concepts into vivid, moving artworks.
+                            </p>
+</div>
+</div>
+</div>
+<div class="col-md-6 mb-4">
+<div class="card h-100" style="background: rgba(74, 122, 140, 0.2); border: none; border-radius: 15px; overflow: hidden;">
+<div class="card-body p-4">
+<h3 style="font-family: 'Synth Wave', sans-serif; color: #FF6B6B; font-size: 1.8rem;">Neural Storytelling</h3>
+<p style="font-family: 'Lucid Sans', sans-serif; color: #FFFFFF; font-size: 1rem;">
+                                Our AI doesn't just generate videos; it weaves narratives. By tapping into the realm of creative hallucination, we enable storytelling that transcends traditional boundaries, creating a new language of visual expression.
+                            </p>
+</div>
+</div>
+</div>
+</div>
+<div class="text-center mb-5">
+<img alt="A surreal, dreamlike landscape with floating geometric shapes and glowing neural networks, representing the intersection of AI and imagination" class="img-fluid rounded" src="images/image_0_about.png" style="box-shadow: 0 0 30px rgba(0, 255, 255, 0.5);"/>
+</div>
+<div class="card mb-5" style="background: rgba(255, 107, 107, 0.1); border: none; border-radius: 15px; box-shadow: 0 0 20px rgba(255, 215, 0, 0.3);">
+<div class="card-body p-4">
+<h2 style="font-family: 'Glitch Script', cursive; color: #9D8DF1; font-size: 2.5rem;">Our Team</h2>
+<p style="font-family: 'Lucid Sans', sans-serif; color: #FFFFFF; font-size: 1.1rem;">
+                        Behind AI_GEN is a diverse team of dreamers, coders, and visual artists. We're united by our passion for pushing the boundaries of what's possible in AI-generated content. From computer vision experts to avant-garde filmmakers, our collective expertise drives the evolution of Dream Logic Engines.
+                    </p>
+</div>
+</div>
+<div class="text-center">
+<a class="btn btn-lg" href="#" style="background: linear-gradient(45deg, #FF1493, #00FFFF); color: #FFFFFF; font-family: 'Synth Wave', sans-serif; font-size: 1.2rem; border: none; padding: 15px 30px; border-radius: 50px; box-shadow: 0 5px 15px rgba(255, 20, 147, 0.4);">
+                    Explore Our Creations
+                </a>
+</div>
+</div>
+</div>
+</div>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    // Add parallax effect to the background
+    window.addEventListener('scroll', function() {
+        const scrolled = window.scrollY;
+        document.body.style.backgroundPositionY = -(scrolled * 0.5) + 'px';
+    });
+
+    // Add glitch effect to headings on hover
+    const headings = document.querySelectorAll('h1, h2, h3');
+    headings.forEach(heading => {
+        heading.addEventListener('mouseover', function() {
+            this.style.animation = 'glitch 0.5s infinite';
+        });
+        heading.addEventListener('mouseout', function() {
+            this.style.animation = 'none';
+        });
+    });
+
+    // Add custom cursor trail
+    const cursor = document.createElement('div');
+    cursor.classList.add('cursor-trail');
+    document.body.appendChild(cursor);
+
+    document.addEventListener('mousemove', e => {
+        cursor.style.left = e.pageX + 'px';
+        cursor.style.top = e.pageY + 'px';
+    });
+});
+</script>
+<style>
+@keyframes glitch {
+    0% { transform: translate(0) }
+    20% { transform: translate(-2px, 2px) }
+    40% { transform: translate(-2px, -2px) }
+    60% { transform: translate(2px, 2px) }
+    80% { transform: translate(2px, -2px) }
+    100% { transform: translate(0) }
+}
+
+.cursor-trail {
+    width: 10px;
+    height: 10px;
+    border-radius: 50%;
+    background: rgba(255, 20, 147, 0.6);
+    position: absolute;
+    pointer-events: none;
+    transition: 0.1s;
+    mix-blend-mode: screen;
+}
+
+body {
+    background: linear-gradient(45deg, #1A0B2E, #4A7A8C);
+    background-size: 400% 400%;
+    animation: gradientBG 15s ease infinite;
+}
+
+@keyframes gradientBG {
+    0% { background-position: 0% 50% }
+    50% { background-position: 100% 50% }
+    100% { background-position: 0% 50% }
+}
+</style>
+</div>
+<footer style="width: 100%; z-index: 1000;">
+<div class="footer bg-dark text-light py-4">
+<div class="container">
+<div class="row">
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="mb-3" style="font-family: 'Synth Wave', sans-serif; color: #A4F9C8;">AI_GEN</h5>
+<p style="font-family: 'Lucid Sans', sans-serif; font-size: 16px;">Dream Logic Engines: Where Imperfect Memory Becomes Cinematic Imagination</p>
+</div>
+<div class="col-md-4 mb-3 mb-md-0">
+<h5 class="mb-3" style="font-family: 'Synth Wave', sans-serif; color: #A4F9C8;">Navigation</h5>
+<ul class="list-unstyled">
+<li><a class="text-light" href="posts.html" style="font-family: 'Lucid Sans', sans-serif; font-size: 16px; text-decoration: none;">Posts</a></li>
+<li><a class="text-light" href="about.html" style="font-family: 'Lucid Sans', sans-serif; font-size: 16px; text-decoration: none;">About</a></li>
+<li><a class="text-light" href="contacts.html" style="font-family: 'Lucid Sans', sans-serif; font-size: 16px; text-decoration: none;">Contacts</a></li>
+<li><a class="text-light" href="privacy_policy.html" style="font-family: 'Lucid Sans', sans-serif; font-size: 16px; text-decoration: none;">Privacy Policy</a></li>
+</ul>
+</div>
+<div class="col-md-4">
+<h5 class="mb-3" style="font-family: 'Synth Wave', sans-serif; color: #A4F9C8;">Connect</h5>
+<div class="d-flex justify-content-start">
+<a class="text-light me-3" href="#"><i class="fab fa-twitter fa-lg"></i></a>
+<a class="text-light me-3" href="#"><i class="fab fa-facebook fa-lg"></i></a>
+<a class="text-light me-3" href="#"><i class="fab fa-instagram fa-lg"></i></a>
+<a class="text-light" href="#"><i class="fab fa-linkedin fa-lg"></i></a>
+</div>
+</div>
+</div>
+<hr class="my-4" style="background-color: #9D8DF1;"/>
+<div class="row">
+<div class="col-md-6 text-center text-md-start">
+<p style="font-family: 'Lucid Sans', sans-serif; font-size: 14px;">© 2024 AI_GEN. All rights reserved.</p>
+</div>
+<div class="col-md-6 text-center text-md-end">
+<p style="font-family: 'Lucid Sans', sans-serif; font-size: 14px;">Contact: info@ai-gen.com | +1 (415) 555-0123</p>
+</div>
+</div>
+</div>
+</div>
+<style>
+    @font-face {
+        font-family: 'Synth Wave';
+        src: url('path-to-synthwave-font.woff2') format('woff2');
+    }
+    @font-face {
+        font-family: 'Lucid Sans';
+        src: url('path-to-lucidsans-font.woff2') format('woff2');
+    }
+    .footer {
+        background: linear-gradient(135deg, #1A0B2E, #4A7A8C);
+    }
+    .footer a:hover {
+        color: #FF1493 !important;
+        transition: color 0.3s ease;
+    }
+    .footer i {
+        transition: transform 0.3s ease;
+    }
+    .footer i:hover {
+        transform: scale(1.2);
+    }
+</style>
+<script>
+document.addEventListener('DOMContentLoaded', (event) => {
+    const footerLinks = document.querySelectorAll('.footer a');
+    footerLinks.forEach(link => {
+        link.addEventListener('mouseover', (e) => {
+            e.target.style.textShadow = '0 0 10px #00FFFF';
+        });
+        link.addEventListener('mouseout', (e) => {
+            e.target.style.textShadow = 'none';
+        });
+    });
+});
+</script>
+</footer>
+</body>
+</html>
